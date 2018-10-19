@@ -38,5 +38,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Screenshots of FirstProject running in Chrome
 
 ![alt text](https://raw.githubusercontent.com/JasonMayberry/first-project/master/src/assets/images/first-project-console.png)
-
+  
+  
 ![alt text](https://raw.githubusercontent.com/JasonMayberry/first-project/master/src/assets/images/first-project-view-localhost_4200.jpg)
