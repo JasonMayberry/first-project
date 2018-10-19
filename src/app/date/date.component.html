@@ -1,0 +1,27 @@
+<br>
+<span>From: <code class="path">src/app/date/date.component.html</code></span>
+<li>date.component works!</li>
+<p>
+  {{ dateMessage }}
+</p>
+someNumber: number = 10;
+ addTwoNumbers(someNumber, 6) = {{ addTwoNumbers(someNumber, 6) }}
+<br>
+<br>
+<div class="address-card">
+  <h1 class="name">{{ user.name }}</h1>
+  <h3 class="title">{{ user.title }}</h3>
+  <button *ngIf="isCollapsed" (click)="toggleCollapse()"> Expand </button>
+  <button *ngIf="!isCollapsed" (click)="toggleCollapse()"> Collapse </button>
+  <div *ngIf="!isCollapsed">
+    <p class="address">{{ user.address }}</p>
+    <div class="phone" *ngIf="user.phone.length">
+      <p>Phone:</p>
+      <p *ngFor="let phoneNumber of user.phone">{{ phoneNumber }}</p>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<h2>Style Encapsulation</h2>
+<p class="title">Test Paragraph in src/app/date/date.component.html with a class of "title".</p>

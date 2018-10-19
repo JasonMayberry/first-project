@@ -1,0 +1,125 @@
+<h2>Creating and using Multiple Modules</h2>
+<span>From: <code class="path">src/app/view/view-component.component.html</code></span>
+<p>
+  <li>view-component works!</li>
+  <textarea style="width: 235px;height: 234px;">
+    To create this component I first ran:
+      $ ng g module view
+    from the main "first-project" folder
+    Then:
+      $ ng g c view/view-component
+    and it really should have been:
+      $ ng g c view/view
+
+    I then added:
+
+      exports: [
+      ViewComponentComponent
+      ]
+
+    to view.module.ts
+    Followed by importing "ViewModule"
+    into app.module.ts
+  </textarea>
+</p>
+<br>
+<h2>Creating a Serivce</h2>
+<p>
+  <textarea style="width: 269px; height: 320px;">
+    From the main project I ran:
+      $ ng g s test
+    Which is short for:
+      $ ng generate service test
+    Then I added:
+
+      // at the top of app.module.ts
+      import { TestService } from './test.service';
+
+      providers: [
+      // services are providers
+      TestService
+      ],
+
+    To: app.module.ts
+
+    I also added:
+
+      printToConsole(arg) {
+        console.log(arg);
+      }
+
+    to test.service.ts
+  </textarea>
+</p>
+<br>
+<h2>Understanding Dependency Injection</h2>
+<p>
+  <textarea style="width: 292px; height: 183px;">
+    Using Dependency Injection was easy!
+    I just imported TestService in the top of:
+    app.component.ts like this:
+      import { TestService } from './test.service';
+    Then added:
+
+      // Add TestService as an arg of the constructor
+      // The "private" keyword is a shortcut making
+      // "svc" a member varible
+      constructor(private svc: TestService){
+          this.svc.printToConsole("Got the service");
+      }
+
+  </textarea>
+</p>
+<br>
+<h2>Service Injection Context</h2>
+<p>
+  Video 22 just explains Service Injection Context.<br>
+  Then we add the following constructor to <br>
+  <span class="path">view-component.component.ts</span><br>
+  to show that services are available everywhere.
+<br>
+  <textarea style="width: 354px; height: 105px;">
+    // added to top
+        import { TestService } from 'src/app/test.service';
+
+    // added under export class ViewComponentComponent
+        constructor(private svc: TestService){
+          this.svc.printToConsole("From inner module / component");
+        }
+  </textarea>
+</p>
+<br>
+<h2>Making a REST calls with HttpClient</h2>
+<p>
+  <textarea style="height: 247px; width: 414px;">
+    Great video!
+    We added the HttpClient import at the top of:
+    app.module.ts - 'The root module' like this:
+      import { HttpClientModule } from '@angular/common/http';
+    Then added it to the imports: [] array.
+
+    Then in app.component.ts we add it as a member varable 
+    to the constructor like this:
+      constructor(private svc: TestService, private http: HttpClient)
+    And imported at the top of the file of course.
+
+    Next we created the lifecycle hook ngOnInit
+    (so that it will call the observable once) like this:
+        ngOnInit() {
+          let obs = this.http.get('https://gist.githubusercontent.com/....json');
+          obs.subscribe((response) => console.log(response));
+        }
+
+  </textarea>
+</p>
+<br>
+<h2>Extending the sample app</h2>
+User Id [1-100]: <input type="text" [(ngModel)]="id">
+<button (click)="search()">Search</button>
+
+<div *ngIf="response">
+  <p>Id: {{response.id}}</p>
+  <p>Title: {{response.title}}</p>
+  <p>Body: {{response.body}}</p>
+  <!-- <p>Body: {{response?.body}}</p> Do this if response? may be undefined-->
+</div>

@@ -1,0 +1,18 @@
+.address-card {
+    border: 3px green solid;
+    padding: 15px;
+}
+.name {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.title {
+    font-style: italic;
+    color: darkgreen;
+}
+.address {
+    font-size: 15px;
+}
+.phone {
+    border-left: 1px gray solid;
+    padding-left: 5px;
+}
